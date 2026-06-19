@@ -2,7 +2,7 @@ name: Monthly Grant Refresh
 
 on:
   schedule:
-    - cron: '0 9 1 * *'  # runs at 9am UTC on the 1st of every month
+    - cron: '0 9 1 * *' # runs at 9am UTC on the 1st of every month
   workflow_dispatch:       # also lets you trigger manually anytime
 
 jobs:
@@ -11,10 +11,10 @@ jobs:
 
     steps:
       - name: Check out repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
