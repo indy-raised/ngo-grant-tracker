@@ -1,0 +1,37 @@
+name: Monthly Grant Refresh
+
+on:
+  schedule:
+    - cron: '0 9 1 * *'  # runs at 9am UTC on the 1st of every month
+  workflow_dispatch:       # also lets you trigger manually anytime
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repo
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Fetch Grants.gov data
+        run: python scripts/fetch_grants_gov.py
+
+      - name: Fetch ProPublica 990 data
+        run: python scripts/fetch_990s.py
+
+      - name: Filter for Shadows relevance
+        run: python scripts/filter.py
+
+      - name: Push to Google Sheets
+        run: python output/push_to_sheets.py
+        env:
+          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+          GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
