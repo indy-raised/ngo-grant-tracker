@@ -1,4 +1,3 @@
-# ngo-grant-tracker
 # NGO Grant Tracker Pipeline
 
 An automated data pipeline that discovers and filters grant 
