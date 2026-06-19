@@ -6,7 +6,7 @@ NGO. The pipeline pulls from public grant databases, scores
 results by relevance, and writes to a shared Google Sheet 
 updated automatically every month.
 
-Built and maintained by Anne Guragain as part of volunteer 
+Built and maintained by Anne who volunteers for
 finance and grants work for Shadows Project.
 
 ---
